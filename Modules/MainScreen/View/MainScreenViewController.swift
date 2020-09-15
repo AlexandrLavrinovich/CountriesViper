@@ -34,7 +34,6 @@ class MainScreenViewController: UIViewController {
 //MARK: - Private
 private extension MainScreenViewController {
     func makeView() {
-//        tableView.rowHeight = 100
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -74,14 +73,14 @@ extension MainScreenViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let new = countries
         return countries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryCell else { return UITableViewCell() }
         let country = countries[indexPath.row]
-        cell.flagImage.loadImage(fromURL: country.country_info.flag)
+//        cell.flagImage.loadImage(fromURL: country.country_info.flag)
+        cell.flagImage.load(url: URL(string:country.country_info.flag)!)
         cell.countryName.text = country.name
         cell.countryCapital.text = country.capital
         cell.smallDescription.text = country.description_small
@@ -95,6 +94,4 @@ extension MainScreenViewController: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }

@@ -11,6 +11,20 @@
 import UIKit
 
 extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension UIImageView {
     
     private var cache: URLCache { URLCache.shared }
     private var session: URLSession { URLSession.shared }

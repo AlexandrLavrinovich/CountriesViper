@@ -28,6 +28,14 @@ class MainScreenRouter: MainScreenRouterInput {
         return view
     }
     
+    //MARK: - Navigation
+    func pushToCountry(view: MainScreenViewInput, with country: CountryModel) {
+        let countryViewController = CountryDetailRouter.makeCountryScreen(with: country)
+        
+        let mainViewCountroller = view as! MainScreenViewController
+        mainViewCountroller.navigationController?.pushViewController(countryViewController, animated: true)
+    }
+    
     
 
 }

@@ -10,4 +10,6 @@ import UIKit
 
 protocol MainScreenRouterInput: class {
     static func makeMainScreen() -> UIViewController
+    
+    func pushToCountry(view: MainScreenViewInput, with country: CountryModel)
 }

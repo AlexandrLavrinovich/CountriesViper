@@ -12,6 +12,9 @@ protocol MainScreenInteractorOutput: class {
     func countriesFetchSuccess(countries: [CountryModel])
     func countriesFetchFailed()
     
+    func countryFetchSuccess(country: CountryModel)
+    func countryFetchFalied()
+    
 //    func getImageFromURLSuccess(country: CountryModel, data: Data)
 //    func getImageFromURLError(country: CountryModel)
 

@@ -23,10 +23,19 @@ class MainScreenPresenter: MainScreenModuleInput, MainScreenViewOutput {
     
     func showCountry(navigationController: UINavigationController) {
         print("push")
+        
     }
 }
 
 extension MainScreenPresenter: MainScreenInteractorOutput {
+    func countryFetchSuccess(country: CountryModel) {
+        
+    }
+    
+    func countryFetchFalied() {
+        print("Country Fetch Failed")
+    }
+    
     
     func countriesFetchSuccess(countries: [CountryModel]) {
         view?.showCountries(countries: countries)
@@ -35,6 +44,8 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
     func countriesFetchFailed() {
         view?.showError()
     }
+    
+    
     
     
     
