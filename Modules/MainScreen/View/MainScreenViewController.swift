@@ -34,6 +34,7 @@ class MainScreenViewController: UIViewController {
 //MARK: - Private
 private extension MainScreenViewController {
     func makeView() {
+        self.title = "Countries"
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -61,7 +62,9 @@ extension MainScreenViewController: MainScreenViewInput {
 
 //MARK: - UITableViewDelegate
 extension MainScreenViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectRowAt(index: indexPath.row)
+    }
 }
 
 
@@ -79,7 +82,6 @@ extension MainScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CountryCell else { return UITableViewCell() }
         let country = countries[indexPath.row]
-//        cell.flagImage.loadImage(fromURL: country.country_info.flag)
         cell.flagImage.load(url: URL(string:country.country_info.flag)!)
         cell.countryName.text = country.name
         cell.countryCapital.text = country.capital
@@ -90,8 +92,6 @@ extension MainScreenViewController: UITableViewDataSource {
             cell.bottomConstraint.constant = 16
         }
         view.layoutIfNeeded()
-        
-        
         return cell
     }
 }

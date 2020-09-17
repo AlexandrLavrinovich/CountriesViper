@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class MainScreenPresenter: MainScreenModuleInput, MainScreenViewOutput {
+class MainScreenPresenter: MainScreenViewOutput {
 
     weak var view: MainScreenViewInput?
     var interactor: MainScreenInteractorInput?
@@ -23,13 +23,16 @@ class MainScreenPresenter: MainScreenModuleInput, MainScreenViewOutput {
     
     func showCountry(navigationController: UINavigationController) {
         print("push")
-        
+    }
+    
+    func didSelectRowAt(index: Int) {
+        interactor?.fetchCountry(at: index)
     }
 }
 
 extension MainScreenPresenter: MainScreenInteractorOutput {
     func countryFetchSuccess(country: CountryModel) {
-        
+        router?.pushToCountry(view: view!, with: country)
     }
     
     func countryFetchFalied() {
@@ -44,9 +47,8 @@ extension MainScreenPresenter: MainScreenInteractorOutput {
     func countriesFetchFailed() {
         view?.showError()
     }
-    
-    
-    
-    
+}
+
+extension MainScreenPresenter: MainScreenModuleInput {
     
 }

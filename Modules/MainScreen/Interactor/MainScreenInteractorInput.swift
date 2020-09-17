@@ -13,4 +13,5 @@ protocol MainScreenInteractorInput: class {
     var presenter: MainScreenInteractorOutput? { get set }
     
     func fetchCountries()
+    func fetchCountry(at index: Int)
 }

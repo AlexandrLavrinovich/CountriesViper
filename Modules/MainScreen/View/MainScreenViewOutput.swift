@@ -21,5 +21,7 @@ protocol MainScreenViewOutput: class {
     func beginFetchCountries()
     func showCountry(navigationController: UINavigationController)
     
+    func didSelectRowAt(index: Int)
+    
 //    func viewIsReady()
 }

@@ -43,6 +43,7 @@ class MainScreenInteractor: MainScreenInteractorInput {
     
     func fetchCountry(at index: Int) {
         guard let countries = self.allCountries, countries.indices.contains(index) else { return }
+        presenter?.countryFetchSuccess(country: countries[index])
         
     }
     
